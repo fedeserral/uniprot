@@ -17,7 +17,7 @@ available services: map, retrieve
 
     Help:
         for a list of all possible mappings visit
-        'http://www.uniprot.org/faq/28'
+        'https://www.uniprot.org/help/api_idmapping'
     
 
 **retrieve**
@@ -25,7 +25,7 @@ available services: map, retrieve
 
     Args:
         query: list of ids to retrieve
-        format: txt by default
+        format: fasta by default
 
     Help:
         possible formats:
