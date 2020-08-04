@@ -29,7 +29,7 @@ available services: map, retrieve
 
     Help:
         possible formats:
-        txt, xml, rdf, fasta, gff
+        txt, xml, rdf, gff
 
 Installation
 ------------
@@ -41,7 +41,9 @@ Installation
 ### From source (UNIX) as standalone only
 
 Clone the git repository
-
+    
+    git clone https://github.com/fedeserral/uniprot.git
+ ##Modification of:
     git clone https://github.com/jdrudolph/uniprot.git
 
 Use `distutils` to install the package
