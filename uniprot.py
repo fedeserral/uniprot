@@ -15,7 +15,7 @@ url = 'http://www.uniprot.org/'
 def _retrieve(query, format='txt'):
     """_retrieve is not meant for use with the python interface, use `retrieve`
     instead"""
-    tool = 'batch/'
+    tool = 'uniprot/'
 
     query = list(set(query.split()))
     queries = [query[i:i+100] for i in range(0, len(query), 100)]
@@ -43,7 +43,7 @@ def retrieve(ids, format='txt'):
 def _map(query, f, t, format='tab'):
     """ _map is not meant for use with the python interface, use `map` instead
     """
-    tool = 'mapping/'
+    tool = 'uploadlists/'
 
     data = {
             'from':f,
