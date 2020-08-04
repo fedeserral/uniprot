@@ -12,21 +12,14 @@ import sys, argparse
 
 url = 'https://www.uniprot.org/'
 
-def _retrieve(query, format='txt'):
+def _retrieve(query, format='fasta'):
     """_retrieve is not meant for use with the python interface, use `retrieve`
     instead"""
-    tool = 'uniprot/'
+   
+  
+    return map(query, "ACC+ID", "ACC", format=format) 
 
-    query = list(set(query.split()))
-    queries = [query[i:i+100] for i in range(0, len(query), 100)]
-
-    data = {'format':format}
-
-    responses = [requests.post(url + tool, data=data, files={'file':' '.join(query)}) for query in queries]
-    page = ''.join([response.text for response in responses])
-    return page
-
-def retrieve(ids, format='txt'):
+def retrieve(ids, format='fasta'):
     """ request entries by uniprot acc using batch retrieval
 
     Args:
