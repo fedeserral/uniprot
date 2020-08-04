@@ -44,7 +44,7 @@ Clone the git repository
     
     git clone https://github.com/fedeserral/uniprot.git
  ##Modification of:
-    git clone https://github.com/jdrudolph/uniprot.git
+https://github.com/jdrudolph/uniprot.git
 
 Use `distutils` to install the package
 
