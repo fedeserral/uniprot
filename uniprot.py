@@ -10,7 +10,7 @@ available services:
 import requests
 import sys, argparse
 
-url = 'http://www.uniprot.org/'
+url = 'https://www.uniprot.org/'
 
 def _retrieve(query, format='txt'):
     """_retrieve is not meant for use with the python interface, use `retrieve`
