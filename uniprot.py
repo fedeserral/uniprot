@@ -16,7 +16,7 @@ def _retrieve(query, format='fasta'):
     """_retrieve is not meant for use with the python interface, use `retrieve`
     instead"""
       
-    return map(query, 'ACC+ID', 'ACC', format=format) 
+    return _map(query, 'ACC+ID', 'ACC', format=format) 
 
 def retrieve(ids, format='fasta'):
     """ request entries by uniprot acc using batch retrieval
