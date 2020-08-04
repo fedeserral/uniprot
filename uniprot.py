@@ -15,9 +15,8 @@ url = 'https://www.uniprot.org/'
 def _retrieve(query, format='fasta'):
     """_retrieve is not meant for use with the python interface, use `retrieve`
     instead"""
-    query = list(set(query.split()))
-  
-    return map(query, "ACC+ID", "ACC", format=format) 
+      
+    return map(query, 'ACC+ID', 'ACC', format=format) 
 
 def retrieve(ids, format='fasta'):
     """ request entries by uniprot acc using batch retrieval
