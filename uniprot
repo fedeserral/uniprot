@@ -31,6 +31,6 @@ if __name__ == '__main__':
         args.out.write(uni._map(query, args.f, args.t, args.format))
 
     elif args.tool == 'retrieve':
-        args.out.write(uni._retrieve(query, format=args.format))
+        args.out.write(uni._retrieve(query))
 
     exit(0)
