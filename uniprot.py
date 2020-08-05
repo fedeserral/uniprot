@@ -58,7 +58,7 @@ def map(ids, f, t, format='tab'):
 
     Help:
         for a list of all possible mappings visit
-        'http://www.uniprot.org/faq/28'
+        'https://www.uniprot.org/help/api_idmapping'
     """
     if type(ids) is not list:
         ids = [ids]
