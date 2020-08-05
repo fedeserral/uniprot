@@ -23,11 +23,11 @@ def retrieve(ids, format='fasta'):
 
     Args:
         query: list of ids to retrieve
-        format: txt by default
+        format: fasta by default
 
     Help:
         possible formats:
-        txt, xml, rdf, fasta, gff"""
+        txt, xml, rdf, gff"""
     if type(ids) is not list:
         ids = [ids]
     return _retrieve(' '.join(ids), format)
