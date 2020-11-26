@@ -10,6 +10,13 @@ available services:
 import requests
 import sys, argparse
 
+def pfam_from_uniprot(uniprot):
+r = requests.get(f"https://www.uniprot.org/uniprot/{uniprot}.xml")
+if r.ok:
+record = bpio.read(StringIO(r.text),"uniprot-xml")
+return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
+raise Exception(f"error retrieving {uniprot}")
+
 url = 'https://www.uniprot.org/'
 
 def _retrieve(query, format='fasta'):
