@@ -9,6 +9,7 @@ available services:
 
 import requests
 import sys, argparse
+import Bio.SeqIO as bpio
 
 def pfam_from_uniprot(uniprot):
     r = requests.get(f"https://www.uniprot.org/uniprot/{uniprot}.xml")
