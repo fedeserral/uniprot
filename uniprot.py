@@ -13,11 +13,12 @@ import Bio.SeqIO as bpio
 from io import StringIO
 
 def pfam_from_uniprot(uniprot):
-    r = requests.get(f"https://www.uniprot.org/uniprot/{uniprot}.xml")
+    url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
+    r = requests.get(url_uniprot)
     if r.ok:
         record = bpio.read(StringIO(r.text),"uniprot-xml")
         return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
-    raise Exception(f"error retrieving {uniprot}:{r.text}")
+    raise Exception(f"error retrieving {uniprot}:{url_uniprot}\n{r.text}")
 
 url = 'https://www.uniprot.org/'
 
