@@ -17,7 +17,7 @@ def pfam_from_uniprot(uniprot):
     if r.ok:
         record = bpio.read(StringIO(r.text),"uniprot-xml")
         return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
-    raise Exception(f"error retrieving {uniprot}")
+    raise Exception(f"error retrieving {uniprot}:{r.text}")
 
 url = 'https://www.uniprot.org/'
 
