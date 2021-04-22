@@ -13,6 +13,18 @@ import Bio.SeqIO as bpio
 from io import StringIO
 
 def pfam_from_uniprot(uniprot):
+     #retry_strategy = Retry(total=3, status_forcelist=[104, 429, 500, 502, 503, 504], 
+                       method_whitelist=["HEAD", "GET", "OPTIONS", "POST"])
+    #adapter = HTTPAdapter(max_retries=retry_strategy)
+    #http = requests.Session() 
+    #http.mount("https://", adapter) 
+    #http.mount("http://", adapter)
+    #url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
+    #r = http.get(url_uniprot)
+    #if r.ok:
+    #   record = bpio.read(StringIO(r.text),"uniprot-xml")
+    #   return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
+    #raise Exception(f"error retrieving {uniprot}:{url_uniprot}\n{r.text}")
     url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
     r = requests.get(url_uniprot)
     if r.ok:
