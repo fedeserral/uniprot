@@ -6,31 +6,32 @@ available services:
     map
     retrieve
 """
-
+from requests.adapters import HTTPAdapter 
+from requests.packages.urllib3.util.retry import Retry
 import requests
 import sys, argparse
 import Bio.SeqIO as bpio
 from io import StringIO
 
 def pfam_from_uniprot(uniprot):
-     #retry_strategy = Retry(total=3, status_forcelist=[104, 429, 500, 502, 503, 504], 
+    retry_strategy = Retry(total=3, status_forcelist=[104, 429, 500, 502, 503, 504], 
                        method_whitelist=["HEAD", "GET", "OPTIONS", "POST"])
-    #adapter = HTTPAdapter(max_retries=retry_strategy)
-    #http = requests.Session() 
-    #http.mount("https://", adapter) 
-    #http.mount("http://", adapter)
-    #url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
-    #r = http.get(url_uniprot)
-    #if r.ok:
-    #   record = bpio.read(StringIO(r.text),"uniprot-xml")
-    #   return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
-    #raise Exception(f"error retrieving {uniprot}:{url_uniprot}\n{r.text}")
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    http = requests.Session() 
+    http.mount("https://", adapter) 
+    http.mount("http://", adapter)
     url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
-    r = requests.get(url_uniprot)
+    r = http.get(url_uniprot)
     if r.ok:
-        record = bpio.read(StringIO(r.text),"uniprot-xml")
-        return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
+       record = bpio.read(StringIO(r.text),"uniprot-xml")
+       return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
     raise Exception(f"error retrieving {uniprot}:{url_uniprot}\n{r.text}")
+    #url_uniprot = f"https://www.uniprot.org/uniprot/{uniprot}.xml"
+    #r = requests.get(url_uniprot)
+    #if r.ok:
+    #    record = bpio.read(StringIO(r.text),"uniprot-xml")
+    #    return [x.split(":")[1] for x in record.dbxrefs if x.startswith("Pfam:") ]
+    #raise Exception(f"error retrieving {uniprot}:{url_uniprot}\n{r.text}")
 
 url = 'https://www.uniprot.org/'
 
@@ -65,7 +66,8 @@ def _map(query, f, t, format='tab'):
             'format':format,
             'query':query
             }
-    response = requests.post(url + tool, data=data)
+    #response = requests.post(url + tool, data=data)
+    response = http.post(url + tool, data=data)
     page = response.text
     return page
 
